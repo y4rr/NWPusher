@@ -72,6 +72,9 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Config" id="saM-Rr-5wg">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="Edit" id="5QF-Oa-p0T">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Edit" id="W48-6f-4Dl">
@@ -153,14 +156,39 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Config" id="Lg5-HA-VrQ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Config" id="hSl-Xw-nI5">
+                        <items>
+                            <menuItem title="Open Config File" id="4w7-CV-7lC">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openConfigFile:" target="kaW-YJ-UA5" id="eA6-4h-Enl"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Save" id="fqZ-bj-Ttq">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="saveConfigFile:" target="kaW-YJ-UA5" id="tbi-n4-AXI"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Reload" id="evb-Xp-C9O">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="reloadConfigFile:" target="kaW-YJ-UA5" id="tsI-Ch-i3h"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
             </items>
-            <point key="canvasLocation" x="-19" y="625"/>
+            <point key="canvasLocation" x="-54" y="-152"/>
         </menu>
         <window title="Pusher" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="600" height="340"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <value key="minSize" type="size" width="500" height="300"/>
             <view key="contentView" id="se5-gp-TjO">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="340"/>
@@ -270,15 +298,15 @@
                     <scrollView hidden="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4n-XE-cfI">
                         <rect key="frame" x="20" y="45" width="560" height="137"/>
                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="uaF-sl-etn">
-                            <rect key="frame" x="1" y="1" width="558" height="135"/>
+                            <rect key="frame" x="1" y="1" width="543" height="135"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="pi6-RR-ayT">
-                                    <rect key="frame" x="0.0" y="0.0" width="558" height="135"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="543" height="135"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="558" height="135"/>
+                                    <size key="minSize" width="543" height="135"/>
                                     <size key="maxSize" width="573" height="10000000"/>
                                     <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
@@ -289,22 +317,22 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="pny-Of-exT">
-                            <rect key="frame" x="543" y="1" width="16" height="135"/>
+                            <rect key="frame" x="544" y="1" width="15" height="135"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6j-iu-9I9">
                         <rect key="frame" x="20" y="45" width="560" height="137"/>
                         <clipView key="contentView" drawsBackground="NO" id="e4e-ov-ymY">
-                            <rect key="frame" x="1" y="1" width="558" height="135"/>
+                            <rect key="frame" x="1" y="1" width="543" height="135"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="ad5-lb-L5u">
-                                    <rect key="frame" x="0.0" y="0.0" width="558" height="135"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="543" height="135"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="558" height="135"/>
+                                    <size key="minSize" width="543" height="135"/>
                                     <size key="maxSize" width="573" height="10000000"/>
                                     <attributedString key="textStorage">
                                         <fragment content="..">
@@ -327,12 +355,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="sbz-Qw-fOe">
-                            <rect key="frame" x="543" y="1" width="16" height="135"/>
+                            <rect key="frame" x="544" y="1" width="15" height="135"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gQs-Aa-IJi">
-                        <rect key="frame" x="470" y="49" width="104" height="14"/>
+                        <rect key="frame" x="454" y="49" width="104" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="Vlu-lQ-8rQ"/>
                         </constraints>
@@ -438,7 +466,7 @@
                     <constraint firstItem="Q6j-iu-9I9" firstAttribute="leading" secondItem="pFE-C0-uHw" secondAttribute="leading" id="muf-KU-1tm"/>
                     <constraint firstItem="z4n-XE-cfI" firstAttribute="bottom" secondItem="Q6j-iu-9I9" secondAttribute="bottom" id="nPu-9g-UVO"/>
                     <constraint firstItem="z4n-XE-cfI" firstAttribute="top" secondItem="Q6j-iu-9I9" secondAttribute="top" id="oSi-z4-WY0"/>
-                    <constraint firstItem="gQs-Aa-IJi" firstAttribute="trailing" secondItem="Q6j-iu-9I9" secondAttribute="trailing" constant="-8" id="pJY-2I-VIM"/>
+                    <constraint firstItem="gQs-Aa-IJi" firstAttribute="trailing" secondItem="Q6j-iu-9I9" secondAttribute="trailing" constant="-24" id="pJY-2I-VIM"/>
                     <constraint firstAttribute="bottom" secondItem="M70-t1-JuG" secondAttribute="bottom" constant="23" id="pWW-7F-Cxq"/>
                     <constraint firstAttribute="trailing" secondItem="EnU-aP-5PD" secondAttribute="trailing" constant="20" id="si6-7v-4p9"/>
                     <constraint firstItem="ch7-P2-FmP" firstAttribute="leading" secondItem="pFE-C0-uHw" secondAttribute="trailing" constant="8" id="t7M-CE-chP"/>

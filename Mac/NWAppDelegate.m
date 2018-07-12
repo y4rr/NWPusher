@@ -146,8 +146,6 @@
 
 - (void)updateSavedPayloads
 {
-    NSLog(@"Update Saved Payloads Combo");
-    
     [_savedPayloadsCombo removeAllItems];
     _savedPayloads = [_config valueForKey:@"savedPayloads"];
     
@@ -176,10 +174,10 @@
 {
     NSString *key = _savedPayloadsCombo.stringValue;
     if (!_savedPayloads || key.length <= 0) { return; }
-    
+
     NSString *value = [_savedPayloads valueForKey: key];
     _payloadField.string = value.mutableCopy;
-    
+
     [self updatePayloadCounter];
 }
 
@@ -187,12 +185,31 @@
 {
     NSString *key = _savedPayloadsCombo.stringValue.mutableCopy;
     NSString *value = _payloadField.string.mutableCopy;
-    
+
     NSMutableDictionary *updatedPayloads = _savedPayloads.mutableCopy;
 
     [updatedPayloads setValue:value forKey:key];
     [_config setValue: updatedPayloads.mutableCopy forKey: @"savedPayloads"];
-    
+
+    [self updateSavedPayloads];
+}
+
+
+#pragma mark - Config File Access
+
+- (IBAction)openConfigFile:(NSMenuItem *)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[self configFileURL]];
+}
+
+- (IBAction)saveConfigFile:(NSMenuItem *)sender
+{
+    [self saveConfig];
+}
+
+- (IBAction)reloadConfigFile:(NSMenuItem *)sender
+{
+    [self loadConfig];
     [self updateSavedPayloads];
 }
 
