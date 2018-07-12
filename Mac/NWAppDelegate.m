@@ -210,6 +210,7 @@
 - (IBAction)reloadConfigFile:(NSMenuItem *)sender
 {
     [self loadConfig];
+    [self updateCertificatePopup];
     [self updateSavedPayloads];
 }
 
