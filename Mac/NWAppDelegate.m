@@ -52,6 +52,7 @@
     NSString *payload = [_config valueForKey:@"payload"];
     _payloadField.string = payload.length ? payload : @"";
     _payloadField.font = [NSFont fontWithName:@"Monaco" size:10];
+    _payloadField.textColor = NSColor.controlTextColor;
     _payloadField.enabledTextCheckingTypes = 0;
     _logField.enabledTextCheckingTypes = 0;
     [self updatePayloadCounter];
