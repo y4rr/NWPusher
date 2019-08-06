@@ -18,6 +18,7 @@
     IBOutlet NSTextField *_countField;
     IBOutlet NSTextField *_infoField;
     IBOutlet NSButton *_pushButton;
+    IBOutlet NSButton *_formatButton;
     IBOutlet NSButton *_reconnectButton;
     IBOutlet NSPopUpButton *_expiryPopup;
     IBOutlet NSPopUpButton *_priorityPopup;
@@ -36,7 +37,7 @@
     NSArray *_certificateIdentityPairs;
     NSUInteger _lastSelectedIndex;
     NWCertificateRef _selectedCertificate;
-    
+
     dispatch_queue_t _serial;
 }
 
@@ -49,7 +50,7 @@
     NWLAddPrinter("NWPusher", NWPusherPrinter, 0);
     NWLPrintInfo();
     _serial = dispatch_queue_create("NWAppDelegate", DISPATCH_QUEUE_SERIAL);
-    
+
     _certificateIdentityPairs = @[];
     [self loadCertificatesFromKeychain];
     [self migrateOldConfigurationIfNeeded];
@@ -102,6 +103,19 @@
 //    if (notification.object == _tokenCombo) [self something];
     
     if (notification.object == _savedPayloadsCombo) [self updateSavedPayloadButtons];
+}
+
+- (IBAction)formatPayload:(NSButton *)sender {
+    NSData *jsonData = [_payloadField.string dataUsingEncoding:NSUTF8StringEncoding];
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    // jsonObject will be nil in case the JSON data is malformed
+    if (jsonObject != nil) {
+        NSData *prettyJsonData = [NSJSONSerialization dataWithJSONObject:jsonObject options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *prettyPrintedJson = [NSString stringWithUTF8String:[prettyJsonData bytes]];
+        if (prettyPrintedJson != nil) {
+            _payloadField.string = prettyPrintedJson;
+        }
+    }
 }
 
 - (IBAction)push:(NSButton *)sender
@@ -384,7 +398,7 @@
 - (NWEnvironment)preferredEnvironmentForCertificate:(NWCertificateRef)certificate
 {
     NWEnvironmentOptions environmentOptions = [NWSecTools environmentOptionsForCertificate:certificate];
-    
+
     return (environmentOptions & NWEnvironmentOptionSandbox) ? NWEnvironmentSandbox : NWEnvironmentProduction;
 }
 
@@ -423,7 +437,7 @@
 - (void)enableButtonsForCertificate:(NWCertificateRef)certificate environment:(NWEnvironment)environment
 {
     NWEnvironmentOptions environmentOptions = [NWSecTools environmentOptionsForCertificate:certificate];
-    
+
     BOOL shouldEnableEnvButton = (environmentOptions == NWEnvironmentOptionAny);
     BOOL shouldSelectSandboxEnv = (environment == NWEnvironmentSandbox);
 
@@ -437,19 +451,19 @@
 {
     if (_hub) {
         [_hub disconnect]; _hub = nil;
-        
+
         [self disableButtons];
         NWLogInfo(@"Disconnected from APN");
     }
-    
+
     _selectedCertificate = certificate;
     [self updateTokenCombo];
-    
+
     if (certificate) {
-        
+
         NSString *summary = [NWSecTools summaryWithCertificate:certificate];
         NWLogInfo(@"Connecting to APN...  (%@ %@)", summary, descriptionForEnvironent(environment));
-        
+
         dispatch_async(_serial, ^{
             NSError *error = nil;
             NWIdentityRef ident = identity ?: [NWSecTools keychainIdentityWithCertificate:certificate error:&error];
@@ -458,7 +472,7 @@
                 if (hub) {
                     NWLogInfo(@"Connected  (%@ %@)", summary, descriptionForEnvironent(environment));
                     _hub = hub;
-                    
+
                     [self enableButtonsForCertificate:certificate environment:environment];
                 } else {
                     NWLogWarn(@"Unable to connect: %@", error.localizedDescription);
@@ -474,9 +488,9 @@
 {
     NSString *summary = [NWSecTools summaryWithCertificate:_selectedCertificate];
     NWEnvironment environment = [self selectedEnvironmentForCertificate:_selectedCertificate];
-    
+
     NWLogInfo(@"Reconnecting to APN...(%@ %@)", summary, descriptionForEnvironent(environment));
-    
+
     [self selectCertificate:_selectedCertificate identity:nil  environment:environment];
 }
 
